@@ -1,34 +1,38 @@
 package com.kodilla.stream;
 
-import com.kodilla.stream.beautifier.PoemBeautifier;
+import com.kodilla.stream.forumuser.Forum;
+import com.kodilla.stream.forumuser.ForumUser;
+
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class SteamMain {
     public static void main(String[] args) {
-//        System.out.println("Welcome do module 7 - Stream");
-//        Processor processor = new Processor();
-//        Executor codeToExecute = () -> System.out.println("This is an example text. ");
-//        processor.execute(codeToExecute);
 
-//        ExpressionExecutor expressionExecutor = new ExpressionExecutor();
-
-//        expressionExecutor.executeExpression(10, 5, (a, b) -> a + b);
-//        expressionExecutor.executeExpression(10, 5, (a, b) -> a - b);
-//        expressionExecutor.executeExpression(10, 5, (a, b) -> a * b);
-//        expressionExecutor.executeExpression(10, 5, (a, b) -> a / b);
+//        BookDirectory theBookDirectory = new BookDirectory();
+//        Map<String, Book> theResultMapOfBooks = theBookDirectory.getList().stream()
+//                .filter(book -> book.getYearOfPublication()>2005)
+//                .collect(Collectors.toMap(Book::getSignature, book -> book));
 //
+//        System.out.println("# elements : " + theResultMapOfBooks.size());
+//        theResultMapOfBooks.entrySet().stream()
+//                .map(entry->entry.getKey() + " " + entry.getValue())
+//                .forEach(System.out::println);
 
-//        expressionExecutor.executeExpression(3,4, FunctionalCalculator::addAToB);
-//        expressionExecutor.executeExpression(3,4, FunctionalCalculator::multiplyAByB);
-//        expressionExecutor.executeExpression(3,4, FunctionalCalculator::subBFromA);
-//        expressionExecutor.executeExpression(3,4, FunctionalCalculator::divideAByB);
+        Forum forum = new Forum();
 
-        PoemBeautifier poemBeautifier = new PoemBeautifier();
+        Map<Integer, ForumUser> mappedList = forum.getUserList().stream()
+                .filter(user -> user.getSex()=='m')
+                .filter(user -> user.getDateOfBirth().getYear()<2000)
+                .filter(user -> user.getPostNumber()>1000)
+                .collect(Collectors.toMap(ForumUser::getId, forumUser -> forumUser));
 
-        System.out.println(poemBeautifier.beautify("marker", (String::toUpperCase)));
-        System.out.println(poemBeautifier.beautify("sandy", (word -> "---" + word + "---")));
+        System.out.println("Size of map "+ mappedList.size());
+
+                mappedList.entrySet().stream()
+                        .map(entry-> entry.getKey() + " " + entry.getValue().getUserName())
+                        .forEach(System.out::println);
+
+
     }
-
-
-
-
 }
