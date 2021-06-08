@@ -1,11 +1,5 @@
 package com.kodilla.stream;
 
-import com.kodilla.stream.forumuser.Forum;
-import com.kodilla.stream.forumuser.ForumUser;
-
-import java.util.Map;
-import java.util.stream.Collectors;
-
 public class SteamMain {
     public static void main(String[] args) {
 
@@ -19,19 +13,19 @@ public class SteamMain {
 //                .map(entry->entry.getKey() + " " + entry.getValue())
 //                .forEach(System.out::println);
 
-        Forum forum = new Forum();
-
-        Map<Integer, ForumUser> mappedList = forum.getUserList().stream()
-                .filter(user -> user.getSex()=='m')
-                .filter(user -> user.getDateOfBirth().getYear()<2000)
-                .filter(user -> user.getPostNumber()>1000)
-                .collect(Collectors.toMap(ForumUser::getId, forumUser -> forumUser));
-
-        System.out.println("Size of map "+ mappedList.size());
-
-                mappedList.entrySet().stream()
-                        .map(entry-> entry.getKey() + " " + entry.getValue().getUserName())
-                        .forEach(System.out::println);
+//        Forum forum = new Forum();
+//
+//        Map<Integer, ForumUser> mappedList = forum.getUserList().stream()
+//                .filter(user -> user.getSex()=='m')
+//                .filter(user -> user.getDateOfBirth().getYear()<2000)
+//                .filter(user -> user.getPostNumber()>1000)
+//                .collect(Collectors.toMap(ForumUser::getId, forumUser -> forumUser));
+//
+//        System.out.println("Size of map "+ mappedList.size());
+//
+//                mappedList.entrySet().stream()
+//                        .map(entry-> entry.getKey() + " " + entry.getValue().getUserName())
+//                        .forEach(System.out::println);
 
 
     }
